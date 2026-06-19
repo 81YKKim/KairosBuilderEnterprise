@@ -1,10 +1,4 @@
-﻿from builder import __version__
-
-
-def main() -> int:
-    print("Kairos Builder Enterprise v" + __version__)
-    print("Python Core Bootstrap OK")
-    return 0
+﻿from builder.cli.main import main
 
 
 if __name__ == "__main__":
