@@ -5,7 +5,7 @@ from builder.services.template_loader import TemplateLoader
 from builder.services.template_renderer import TemplateRenderer
 
 
-class DomainGenerator(BaseGenerator):
+class ServiceGenerator(BaseGenerator):
     def __init__(
         self,
         template_loader: TemplateLoader | None = None,
@@ -14,7 +14,7 @@ class DomainGenerator(BaseGenerator):
         self.template_loader = template_loader or TemplateLoader()
         self.template_renderer = template_renderer or TemplateRenderer()
 
-    def generate(self, name: str, output_root: str = "src/builder/domain") -> Path:
+    def generate(self, name: str, output_root: str = "src/builder/services") -> Path:
         file_name = self._to_file_name(name)
         output_path = Path(output_root) / file_name
 
@@ -30,7 +30,7 @@ class DomainGenerator(BaseGenerator):
         template = self.template_loader.load(
             language="python",
             profile="standard",
-            template="domain.tpl",
+            template="service.tpl",
         )
 
         return self.template_renderer.render(
