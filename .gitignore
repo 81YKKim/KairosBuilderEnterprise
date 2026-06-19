@@ -1,0 +1,8 @@
+﻿runtime/
+builder/logs/
+builder/state/State.json
+builder/cache/
+builder/temp/
+__pycache__/
+*.pyc
+*.log
