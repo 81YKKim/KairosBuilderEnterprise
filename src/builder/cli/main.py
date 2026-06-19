@@ -1,6 +1,7 @@
 ﻿import argparse
 
 from builder.cli.registry_commands import add_registry_commands
+from builder.cli.scan_commands import add_scan_commands
 
 
 def main(argv=None) -> int:
@@ -21,6 +22,7 @@ def main(argv=None) -> int:
     doctor_parser.set_defaults(func=handle_doctor)
 
     add_registry_commands(subparsers)
+    add_scan_commands(subparsers)
 
     args = parser.parse_args(argv)
 
