@@ -1,6 +1,7 @@
 ﻿import argparse
 import sys
 from builder import __version__
+from builder.services.manifest_service import ManifestService
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,9 +22,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.command == "info":
-        print("Kairos Builder Enterprise")
-        print("Mode: Enterprise AI Development Platform")
-        print("Core: Python")
+        manifest = ManifestService().load_manifest()
+        print("Project     : " + manifest.project_name)
+        print("Version     : " + manifest.project_version)
+        print("Language    : " + manifest.language)
+        print("Architecture: " + manifest.architecture)
         return 0
 
     if args.command == "doctor":

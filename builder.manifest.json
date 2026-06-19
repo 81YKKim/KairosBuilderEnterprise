@@ -1,0 +1,12 @@
+﻿{
+  "schema": "1.0",
+  "builder": {
+    "minimum_version": "1.0.0"
+  },
+  "project": {
+    "name": "Kairos Builder Enterprise",
+    "version": "1.0.0",
+    "language": "Python",
+    "architecture": "Enterprise"
+  }
+}
