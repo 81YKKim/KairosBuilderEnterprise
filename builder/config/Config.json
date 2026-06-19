@@ -1,0 +1,13 @@
+﻿{
+  "builder_name": "Kairos Builder Enterprise",
+  "version": "1.0.0",
+  "mode": "enterprise",
+  "source_of_truth": "github",
+  "default_branch": "main",
+  "treat_git_warning_as_failure": false,
+  "success_rule": "exit_code_zero",
+  "state_path": "builder/state/State.json",
+  "log_path": "builder/logs",
+  "dashboard_enabled": true,
+  "gui_future_enabled": true
+}

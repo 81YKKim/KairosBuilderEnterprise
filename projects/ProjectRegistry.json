@@ -1,0 +1,12 @@
+﻿{
+  "projects": [
+    {
+      "name": "Kairos Ultimate Enterprise X",
+      "repo_path": "C:\\KairosUltimateEnterpriseX",
+      "github_remote": "origin",
+      "default_branch": "main",
+      "current_sprint": 41,
+      "enabled": true
+    }
+  ]
+}
