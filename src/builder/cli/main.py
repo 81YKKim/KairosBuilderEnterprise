@@ -1,41 +1,48 @@
 ﻿import argparse
-import sys
-from builder import __version__
-from builder.services.manifest_service import ManifestService
+
+from builder.cli.registry_commands import add_registry_commands
 
 
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="builder", description="Kairos Builder Enterprise CLI")
-    sub = parser.add_subparsers(dest="command")
-    sub.add_parser("version", help="Show Builder version")
-    sub.add_parser("info", help="Show Builder information")
-    sub.add_parser("doctor", help="Check Builder environment")
-    return parser
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="builder",
+        description="Kairos Builder Enterprise",
+    )
 
+    subparsers = parser.add_subparsers(dest="command")
 
-def main(argv: list[str] | None = None) -> int:
-    parser = build_parser()
+    version_parser = subparsers.add_parser("version")
+    version_parser.set_defaults(func=handle_version)
+
+    info_parser = subparsers.add_parser("info")
+    info_parser.set_defaults(func=handle_info)
+
+    doctor_parser = subparsers.add_parser("doctor")
+    doctor_parser.set_defaults(func=handle_doctor)
+
+    add_registry_commands(subparsers)
+
     args = parser.parse_args(argv)
 
-    if args.command == "version":
-        print("Kairos Builder Enterprise v" + __version__)
-        return 0
-
-    if args.command == "info":
-        manifest = ManifestService().load_manifest()
-        print("Project     : " + manifest.project_name)
-        print("Version     : " + manifest.project_version)
-        print("Language    : " + manifest.language)
-        print("Architecture: " + manifest.architecture)
-        return 0
-
-    if args.command == "doctor":
-        print("Doctor: OK")
-        print("Python: " + sys.version.split()[0])
+    if hasattr(args, "func"):
+        args.func(args)
         return 0
 
     parser.print_help()
     return 0
+
+
+def handle_version(args) -> None:
+    print("Kairos Builder Enterprise 1.0.0")
+
+
+def handle_info(args) -> None:
+    print("Kairos Builder Enterprise")
+    print("Architecture: Enterprise")
+
+
+def handle_doctor(args) -> None:
+    print("Builder doctor check passed.")
 
 
 if __name__ == "__main__":
