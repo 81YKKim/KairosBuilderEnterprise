@@ -2,6 +2,7 @@
 
 from builder.cli.registry_commands import add_registry_commands
 from builder.cli.scan_commands import add_scan_commands
+from builder.cli.sprint_commands import add_sprint_commands
 
 
 def main(argv=None) -> int:
@@ -23,6 +24,7 @@ def main(argv=None) -> int:
 
     add_registry_commands(subparsers)
     add_scan_commands(subparsers)
+    add_sprint_commands(subparsers)
 
     args = parser.parse_args(argv)
 
