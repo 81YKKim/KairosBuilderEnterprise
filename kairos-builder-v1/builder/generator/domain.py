@@ -1,25 +1,28 @@
-from pathlib import Path
-from builder.context.context import Context
-from builder.template.renderer import TemplateRenderer
+﻿from pathlib import Path
+
+from builder.template.engine import TemplateEngine
+
 
 class DomainGenerator:
-
-    def generate(self, name):
-
-        ctx = Context().build(name)
-
-        template = """
-class {{class_name}}:
     def __init__(self):
-        self.name = "{{name}}"
-"""
+        self.engine = TemplateEngine()
 
-        content = TemplateRenderer().render(template, ctx)
+    def generate(self, name: str):
+        class_name = name.capitalize()
 
-        path = Path("output/domain")
-        path.mkdir(parents=True, exist_ok=True)
+        output = Path("output/domain")
+        output.mkdir(parents=True, exist_ok=True)
 
-        file_path = path / f"{name.lower()}_domain.py"
-        file_path.write_text(content)
+        output_file = output / f"{name}_domain.py"
 
-        return f"generated: {file_path}"
+        text = self.engine.render(
+            "templates/domain.tpl",
+            {
+                "class_name": class_name,
+                "entity_name": name,
+            },
+        )
+
+        output_file.write_text(text, encoding="utf-8")
+
+        return f"generated: {output_file}"
