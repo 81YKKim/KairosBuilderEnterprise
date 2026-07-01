@@ -1,7 +1,3 @@
-from builder.generator.domain import DomainGenerator
+﻿from builder.generator.project_generator import ProjectGenerator
 
-class ProjectGenerator:
-
-    def generate(self, name):
-
-        return [DomainGenerator().generate(name)]
+__all__ = ["ProjectGenerator"]

@@ -7,8 +7,8 @@ class UnitTestGenerator:
     def __init__(self):
         self.engine = TemplateEngine()
 
-    def generate(self, name: str):
-        output = Path("output/tests")
+    def generate(self, name: str, output_root: str = "output/tests") -> Path:
+        output = Path(output_root)
         output.mkdir(parents=True, exist_ok=True)
 
         output_file = output / f"test_{name}.py"
@@ -22,4 +22,4 @@ class UnitTestGenerator:
 
         output_file.write_text(text, encoding="utf-8")
 
-        return f"generated: {output_file}"
+        return output_file

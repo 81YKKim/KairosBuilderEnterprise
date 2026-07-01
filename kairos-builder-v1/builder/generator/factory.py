@@ -1,14 +1,9 @@
-from builder.generator.domain import DomainGenerator
-from builder.generator.project import ProjectGenerator
+﻿from builder.generator.registry import default_registry
+
 
 class Factory:
+    def __init__(self, registry=None):
+        self.registry = registry or default_registry()
 
     def create(self, name):
-
-        if name == "domain":
-            return DomainGenerator()
-
-        if name == "project":
-            return ProjectGenerator()
-
-        raise Exception("Unknown generator")
+        return self.registry.create(name)

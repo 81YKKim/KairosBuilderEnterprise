@@ -7,10 +7,10 @@ class ServiceGenerator:
     def __init__(self):
         self.engine = TemplateEngine()
 
-    def generate(self, name: str):
+    def generate(self, name: str, output_root: str = "output/service") -> Path:
         class_name = name.capitalize()
 
-        output = Path("output/service")
+        output = Path(output_root)
         output.mkdir(parents=True, exist_ok=True)
 
         output_file = output / f"{name}_service.py"
@@ -24,4 +24,4 @@ class ServiceGenerator:
 
         output_file.write_text(text, encoding="utf-8")
 
-        return f"generated: {output_file}"
+        return output_file

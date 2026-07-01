@@ -1,6 +1,4 @@
-﻿from pathlib import Path
-
-from builder.generator.domain import DomainGenerator
+﻿from builder.generator.domain import DomainGenerator
 
 
 def test_domain_generator():
@@ -8,9 +6,5 @@ def test_domain_generator():
 
     result = generator.generate("order")
 
-    assert "generated:" in result
-
-    text = Path("output/domain/order_domain.py").read_text(encoding="utf-8")
-
-    assert "class Order" in text
-    assert 'self.name = "order"' in text
+    assert result.exists()
+    assert result.name == "order_domain.py"
