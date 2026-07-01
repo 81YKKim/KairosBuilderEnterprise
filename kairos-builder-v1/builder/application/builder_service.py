@@ -1,38 +1,67 @@
-﻿from pathlib import Path
+﻿from builder.plugins.market_data_engine import MarketDataEngine
+from builder.plugins.money_flow_engine import MoneyFlowEngine
+from builder.plugins.universe_scanner import UniverseScanner
+from builder.plugins.universe_provider import UniverseProvider
 
-from builder.context.project_context import ProjectContext
-from builder.generator.factory import Factory
-from builder.workflow.builder_workflow import BuilderWorkflow
+from builder.execution.execution_engine import ExecutionEngine
 
 
 class BuilderService:
-    def __init__(
-        self,
-        factory: Factory | None = None,
-        workflow: BuilderWorkflow | None = None,
-        context: ProjectContext | None = None,
-    ) -> None:
-        self.factory = factory or Factory()
-        self.workflow = workflow or BuilderWorkflow()
-        self.context = context or ProjectContext()
 
-    def create_project(self, name: str, output_root: str = "output/projects") -> Path:
-        generator = self.factory.create("project")
-        return generator.generate(name, output_root)
+    def __init__(self, context=None):
 
-    def generate(self, generator_type: str, name: str):
-        generator = self.factory.create(generator_type)
-        return generator.generate(name)
+        self.context = context
 
-    def workflow_verify(self) -> str:
-        return "\n".join(self.workflow.verify_plan())
+        self.market = MarketDataEngine()
+        self.flow = MoneyFlowEngine()
+        self.scanner = UniverseScanner()
+        self.universe = UniverseProvider()
 
-    def workflow_commit_message(self, scope: str, message: str) -> str:
-        plan = self.workflow.plan_commit("feat", scope, message)
-        return plan["commit_message"]
+        self.executor = ExecutionEngine()
 
-    def project_version(self) -> str:
-        return self.context.version()
+    # -----------------------------
+    # FULL MARKET SCAN
+    # -----------------------------
+    def run_full_market_scan(self):
 
-    def project_sprint(self) -> int:
-        return self.context.current_sprint()
+        universe = self.universe.get_all_us_stocks()
+
+        ranked = self.scanner.scan_all(
+            universe,
+            self.market,
+            self.flow
+        )
+
+        return ranked[:20]
+
+    # -----------------------------
+    # AUTO TRADE
+    # -----------------------------
+    def execute_top_scan(self, capital=10000):
+
+        universe = self.universe.get_all_us_stocks()
+
+        ranked = self.scanner.scan_all(
+            universe,
+            self.market,
+            self.flow
+        )
+
+        filtered = ranked[:10]
+
+        adjusted = []
+        total = sum(x["score"] for x in filtered) or 1
+
+        for x in filtered:
+
+            weight = x["score"] / total
+            allocation = capital * weight
+
+            adjusted.append({
+                "ticker": x["ticker"],
+                "score": x["score"],
+                "signal": x["signal"],
+                "allocation": allocation
+            })
+
+        return self.executor.execute_top(adjusted, capital)
