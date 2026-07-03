@@ -1,21 +1,26 @@
-﻿from builder.cli.command_router import CommandRouter
+﻿from builder.application.builder_service import BuilderService
+from builder.cli.command_router import CommandRouter
 
 
 def main():
     print("🚀 Kairos Builder V1 Running")
 
-    router = CommandRouter()
+    service = BuilderService()
+    router = CommandRouter(service)
 
     while True:
-        cmd = input("kairos> ")
-
-        result = router.handle(cmd)
-
-        if result == "exit":
+        try:
+            cmd = input("kairos> ").strip()
+        except EOFError:
             break
 
-        if result is not None:
-            print(result)
+        if cmd in {"exit", "quit", "q"}:
+            break
+
+        if not cmd:
+            continue
+
+        print(router.handle(cmd))
 
 
 if __name__ == "__main__":
