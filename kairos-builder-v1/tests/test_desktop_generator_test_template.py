@@ -22,5 +22,6 @@ def test_desktop_generator_creates_foundation_test_file(
 
     source = test_path.read_text(encoding="utf-8")
 
-    assert "DesktopGenerator" in source
-    assert "generated_count == 13" in source
+    assert "test_generated_desktop_foundation_exists" in source
+    assert "desktop_root" in source
+    assert "DesktopGenerator" not in source
