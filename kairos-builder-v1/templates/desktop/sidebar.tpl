@@ -25,13 +25,13 @@ class Sidebar(QWidget):
         title = QLabel("KAIROS")
         title.setObjectName("sidebarTitle")
 
-        dashboard_button = QPushButton("Dashboard")
-        dashboard_button.setObjectName("sidebarButton")
-        dashboard_button.clicked.connect(
+        self.dashboard_button = QPushButton("Dashboard")
+        self.dashboard_button.setObjectName("sidebarButton")
+        self.dashboard_button.clicked.connect(
             self.dashboard_requested.emit
         )
 
         layout.addWidget(title)
         layout.addSpacing(20)
-        layout.addWidget(dashboard_button)
+        layout.addWidget(self.dashboard_button)
         layout.addStretch()
