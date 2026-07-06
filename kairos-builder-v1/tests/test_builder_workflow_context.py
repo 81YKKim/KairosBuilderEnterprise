@@ -17,7 +17,7 @@ def test_builder_workflow_current_sprint(tmp_path):
 
     workflow = BuilderWorkflow(context=context)
 
-    assert workflow.current_sprint() == 33
+    assert workflow.current_sprint() == 29
 
 
 def test_builder_workflow_project_version(tmp_path):
@@ -26,4 +26,4 @@ def test_builder_workflow_project_version(tmp_path):
 
     workflow = BuilderWorkflow(context=context)
 
-    assert workflow.project_version() == "1.0.0"
+    assert workflow.project_version() == "2.0.0-alpha"

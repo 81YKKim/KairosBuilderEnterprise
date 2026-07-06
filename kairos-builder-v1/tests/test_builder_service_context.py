@@ -17,7 +17,7 @@ def test_builder_service_project_version(tmp_path):
 
     service = BuilderService(context=context)
 
-    assert service.project_version() == "1.0.0"
+    assert service.project_version() == "2.0.0-alpha"
 
 
 def test_builder_service_project_sprint(tmp_path):
@@ -26,4 +26,4 @@ def test_builder_service_project_sprint(tmp_path):
 
     service = BuilderService(context=context)
 
-    assert service.project_sprint() == 33
+    assert service.project_sprint() == 29

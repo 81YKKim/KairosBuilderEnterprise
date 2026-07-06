@@ -6,8 +6,9 @@ def test_project_state_manager_initializes(tmp_path):
 
     data = manager.initialize()
 
-    assert data["project"] == "Kairos Builder Enterprise V1"
-    assert data["current_sprint"] == 33
+    assert data["project"] == "Kairos Builder Enterprise V2"
+    assert data["version"] == "2.0.0-alpha"
+    assert data["current_sprint"] == 29
     assert data["test_status"] == "PASS"
 
 
@@ -18,7 +19,7 @@ def test_project_state_manager_load(tmp_path):
 
     data = manager.load()
 
-    assert data["repository"] == "Kairos-Builder-Enterprise-V1"
+    assert data["repository"] == "KairosBuilderEnterprise"
     assert data["state"] == "development"
 
 
@@ -27,17 +28,17 @@ def test_bump_sprint(tmp_path):
 
     manager.initialize()
 
-    assert manager.bump_sprint() == 34
-    assert manager.current_sprint() == 34
+    assert manager.bump_sprint() == 30
+    assert manager.current_sprint() == 30
 
 
 def test_set_last_commit(tmp_path):
     manager = ProjectStateManager(str(tmp_path / "project.json"))
 
     manager.initialize()
-    manager.set_last_commit("#000033")
+    manager.set_last_commit("#000029")
 
-    assert manager.load()["last_commit"] == "#000033"
+    assert manager.load()["last_commit"] == "#000029"
 
 
 def test_set_test_status(tmp_path):

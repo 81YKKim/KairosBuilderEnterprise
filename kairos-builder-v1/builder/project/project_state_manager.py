@@ -8,12 +8,12 @@ class ProjectStateManager:
 
     def initialize(self) -> dict:
         data = {
-            "project": "Kairos Builder Enterprise V1",
-            "version": "1.0.0",
-            "current_sprint": 33,
-            "last_commit": "#000032",
+            "project": "Kairos Builder Enterprise V2",
+            "version": "2.0.0-alpha",
+            "current_sprint": 29,
+            "last_commit": "#000028",
             "test_status": "PASS",
-            "repository": "Kairos-Builder-Enterprise-V1",
+            "repository": "KairosBuilderEnterprise",
             "state": "development",
         }
 
