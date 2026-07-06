@@ -106,6 +106,11 @@ class Dashboard(QWidget):
         )
 
     def _refresh_recommendations(self) -> None:
+        recommendations = self.view_model.recommendations
+
         self.recommendation_table.set_recommendations(
-            self.view_model.recommendations
+            recommendations
         )
+
+        if not recommendations:
+            self.recommendation_detail.clear()
