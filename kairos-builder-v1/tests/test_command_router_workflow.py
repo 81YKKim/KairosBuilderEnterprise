@@ -12,5 +12,5 @@ def test_command_router_workflow_commit_message():
 
     result = router.handle("workflow commit workflow connect-cli")
 
-    assert result.startswith("#000024 feat(workflow):")
+    assert result.startswith("#000030 feat(workflow):")
     assert "connect-cli" in result

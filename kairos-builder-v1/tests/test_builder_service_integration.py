@@ -59,6 +59,6 @@ def test_builder_service_workflow_commit_message():
     )
 
     assert result.startswith(
-        "#000024 feat(workflow):"
+        "#000030 feat(workflow):"
     )
     assert "service-integration" in result
