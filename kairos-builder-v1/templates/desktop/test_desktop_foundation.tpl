@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 from builder.generator.desktop_generator import DesktopGenerator
 
