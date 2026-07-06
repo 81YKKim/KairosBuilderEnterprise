@@ -23,7 +23,7 @@ def test_builder_service_generates_desktop(tmp_path):
     )
 
     assert result.project_name == "KairosDesktop"
-    assert result.generated_count == 12
+    assert result.generated_count == 13
 
     desktop_root = (
         result.project_path
@@ -41,6 +41,12 @@ def test_builder_service_generates_desktop(tmp_path):
         desktop_root
         / "widgets"
         / "recommendation_detail.py"
+    ).exists()
+
+    assert (
+        result.project_path
+        / "tests"
+        / "test_desktop_foundation.py"
     ).exists()
 
 

@@ -73,6 +73,10 @@ class DesktopGenerator(CompositeGenerator):
             src_root / "adapters" / "replay_adapter.py",
             "replay_adapter.tpl",
         )
+        foundation_test = self._generate_desktop_test(
+            project_name=name,
+            tests_root=tests_root,
+        )
 
         generated = self.collect_results(
             foundation_files,
@@ -83,6 +87,7 @@ class DesktopGenerator(CompositeGenerator):
             viewmodel,
             service,
             adapter,
+            foundation_test,
         )
 
         DesktopStructureValidator().validate(src_root)
@@ -168,6 +173,29 @@ class DesktopGenerator(CompositeGenerator):
             main_window_file,
             theme_file,
             init_file,
+        )
+
+    def _generate_desktop_test(
+        self,
+        project_name: str,
+        tests_root: Path,
+    ) -> Path:
+        context = {
+            "project_name": project_name,
+        }
+
+        template_path = (
+            Path("templates")
+            / "desktop"
+            / "test_desktop_foundation.tpl"
+        )
+
+        return self._write_desktop_file_if_missing(
+            tests_root / "test_desktop_foundation.py",
+            self.render_template(
+                str(template_path),
+                context,
+            ),
         )
 
     def _generate_template(

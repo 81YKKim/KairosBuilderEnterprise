@@ -12,7 +12,7 @@ def test_desktop_generator_result_paths_exist(tmp_path: Path):
     assert result.project_path.exists()
     assert result.project_path.is_dir()
 
-    assert result.generated_count == 12
+    assert result.generated_count == 13
     assert all(path.exists() for path in result.generated_files)
     assert all(path.is_file() for path in result.generated_files)
 

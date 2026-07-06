@@ -1,4 +1,4 @@
-from pathlib import Path
+﻿from pathlib import Path
 
 from builder.generator.desktop_generator import DesktopGenerator
 
@@ -51,5 +51,5 @@ def test_desktop_generator_reports_three_widgets(
         str(tmp_path),
     )
 
-    assert result.generated_count == 12
+    assert result.generated_count == 13
     assert result.widget_count == 3

@@ -18,7 +18,7 @@ def test_desktop_generator_creates_enterprise_desktop_foundation(
     )
 
     assert result.project_name == "KairosDesktop"
-    assert result.generated_count == 12
+    assert result.generated_count == 13
 
     assert result.page_count == 1
     assert result.widget_count == 3
@@ -70,6 +70,12 @@ def test_desktop_generator_creates_enterprise_desktop_foundation(
         desktop_root
         / "adapters"
         / "replay_adapter.py"
+    ).exists()
+
+    assert (
+        result.project_path
+        / "tests"
+        / "test_desktop_foundation.py"
     ).exists()
 
 
