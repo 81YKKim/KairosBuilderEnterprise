@@ -16,6 +16,10 @@ class DesktopManifestWriter:
         output_directory.mkdir(parents=True, exist_ok=True)
 
         manifest_path = output_directory / "desktop.manifest.json"
+
+        if manifest_path.exists():
+            return manifest_path
+
         manifest_path.write_text(
             json.dumps(
                 manifest.to_dict(),
