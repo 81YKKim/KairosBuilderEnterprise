@@ -132,32 +132,32 @@ class DesktopGenerator(CompositeGenerator):
 
         template_root = Path("templates") / "desktop"
 
-        app_file = self.write_file(
+        app_file = self._write_desktop_file_if_missing(
             src_root / "app.py",
             self.render_template(
                 str(template_root / "app.tpl"),
                 context,
             ),
         )
-        main_window_file = self.write_file(
+        main_window_file = self._write_desktop_file_if_missing(
             src_root / "main_window.py",
             self.render_template(
                 str(template_root / "main_window.tpl"),
                 context,
             ),
         )
-        theme_file = self.write_file(
+        theme_file = self._write_desktop_file_if_missing(
             src_root / "theme.py",
             self.render_template(
                 str(template_root / "theme.tpl"),
                 context,
             ),
         )
-        main_file = self.write_file(
+        main_file = self._write_desktop_file_if_missing(
             src_root / "main.py",
             self._render_main_module(),
         )
-        init_file = self.write_file(
+        init_file = self._write_desktop_file_if_missing(
             src_root / "__init__.py",
             self._render_package_init(),
         )
@@ -175,7 +175,7 @@ class DesktopGenerator(CompositeGenerator):
         output_path: Path,
         template_name: str,
     ) -> Path:
-        return self.write_file(
+        return self._write_desktop_file_if_missing(
             output_path,
             self.render_template(
                 str(
@@ -186,6 +186,21 @@ class DesktopGenerator(CompositeGenerator):
                 {},
             ),
         )
+
+    @staticmethod
+    def _write_desktop_file_if_missing(
+        path: Path,
+        content: str,
+    ) -> Path:
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        if not path.exists():
+            path.write_text(
+                content,
+                encoding="utf-8",
+            )
+
+        return path
 
     @staticmethod
     def _render_main_module() -> str:
