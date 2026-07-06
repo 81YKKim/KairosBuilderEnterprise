@@ -66,3 +66,22 @@ def test_desktop_generator_creates_manifest_file(tmp_path: Path):
     assert data["generated"]["viewmodels"] == result.viewmodel_count
     assert data["generated"]["services"] == result.service_count
     assert data["generated"]["adapters"] == result.adapter_count
+
+
+def test_desktop_manifest_writer_does_not_write_utf8_bom(tmp_path: Path):
+    manifest = DesktopManifest(
+        project_name="KairosDesktop",
+        builder_version="2.0.0-alpha",
+        generator="DesktopGenerator",
+        architecture="MVVM",
+        created_at="2026-07-01T00:00:00+00:00",
+        pages=1,
+        widgets=1,
+        viewmodels=1,
+        services=1,
+        adapters=1,
+    )
+
+    path = DesktopManifestWriter().write(manifest, tmp_path)
+
+    assert not path.read_bytes().startswith(b"\xef\xbb\xbf")
