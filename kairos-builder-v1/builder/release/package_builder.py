@@ -12,13 +12,13 @@ class PackageBuilder:
 
         package_info = {
             "name": root.name,
-            "version": "1.0.0",
-            "type": "builder-cli-package"
+            "version": "2.0.0-alpha",
+            "type": "builder-cli-package",
         }
 
         (dist / "package.json").write_text(
             json.dumps(package_info, indent=4),
-            encoding="utf-8"
+            encoding="utf-8",
         )
 
         return dist
@@ -30,7 +30,7 @@ class PackageBuilder:
         shutil.make_archive(
             str(bundle_path).replace(".zip", ""),
             "zip",
-            root_dir=root
+            root_dir=root,
         )
 
         return Path(bundle_path)

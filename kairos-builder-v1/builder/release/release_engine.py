@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from datetime import UTC, datetime
 from pathlib import Path
 import json
-from datetime import datetime
 
 
 class ReleaseEngine:
@@ -12,7 +12,7 @@ class ReleaseEngine:
         return {
             "project": root.name,
             "status": "built",
-            "version": "1.0.0"
+            "version": "2.0.0-alpha",
         }
 
     def package(self, project_path: str | Path) -> dict:
@@ -21,7 +21,7 @@ class ReleaseEngine:
         return {
             "project": root.name,
             "package": "release.zip",
-            "status": "packaged"
+            "status": "packaged",
         }
 
     def release(self, project_path: str | Path) -> dict:
@@ -29,14 +29,14 @@ class ReleaseEngine:
 
         data = {
             "project": root.name,
-            "version": "1.0.0",
+            "version": "2.0.0-alpha",
             "state": "RELEASED",
-            "released_at": datetime.utcnow().isoformat()
+            "released_at": datetime.now(UTC).isoformat(),
         }
 
         (root / "release.json").write_text(
             json.dumps(data, indent=4),
-            encoding="utf-8"
+            encoding="utf-8",
         )
 
         return data

@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class VersionLock:
-    version: str = "1.0.0"
-    state: str = "STABLE"  # STABLE | FROZEN
+    version: str = "2.0.0-alpha"
+    state: str = "STABLE"
     allow_changes: bool = False
 
     def is_frozen(self) -> bool:
