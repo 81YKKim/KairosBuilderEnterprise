@@ -1,27 +1,23 @@
 ﻿from pathlib import Path
 
-from builder.template.engine import TemplateEngine
+from builder.generator.file_generator import FileGenerator
 
 
-class ServiceGenerator:
-    def __init__(self):
-        self.engine = TemplateEngine()
+class ServiceGenerator(FileGenerator):
+    category = "file"
 
-    def generate(self, name: str, output_root: str = "output/service") -> Path:
-        class_name = name.capitalize()
+    def generate(
+        self,
+        name: str,
+        output_root: str = "output/service",
+    ) -> Path:
+        class_name = self.to_class_name(name)
+        file_name = self.to_snake_name(name)
 
-        output = Path(output_root)
-        output.mkdir(parents=True, exist_ok=True)
-
-        output_file = output / f"{name}_service.py"
-
-        text = self.engine.render(
+        return self.generate_file(
             "templates/service.tpl",
+            Path(output_root) / f"{file_name}_service.py",
             {
                 "class_name": class_name,
             },
         )
-
-        output_file.write_text(text, encoding="utf-8")
-
-        return output_file

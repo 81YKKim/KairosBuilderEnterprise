@@ -33,7 +33,7 @@ def test_command_router_generate_service(
     )
 
     assert result.exists()
-    assert result.name == "Market_service.py"
+    assert result.name == "market_service.py"
 
     source = result.read_text(encoding="utf-8")
 
