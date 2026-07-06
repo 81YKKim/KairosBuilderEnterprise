@@ -2,5 +2,5 @@ class Snapshot:
     def capture(self) -> dict:
         return {
             "state": "stable",
-            "version": "1.0.0"
+            "version": "2.0.0-alpha",
         }
