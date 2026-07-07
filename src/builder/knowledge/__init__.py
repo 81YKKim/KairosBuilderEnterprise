@@ -1,5 +1,6 @@
-"""Knowledge layer models, extractors, graph, and query for Builder Enterprise X."""
+"""Knowledge layer models, extractors, graph, query, and cache."""
 
+from builder.knowledge.cache import KnowledgeCache, KnowledgeSnapshot
 from builder.knowledge.extractor import KnowledgeExtractor
 from builder.knowledge.graph import KnowledgeGraph
 from builder.knowledge.model import (
@@ -16,6 +17,7 @@ from builder.knowledge.query import (
 
 __all__ = [
     "KnowledgeCollection",
+    "KnowledgeCache",
     "KnowledgeEntity",
     "KnowledgeEntityType",
     "KnowledgeExtractor",
@@ -23,5 +25,6 @@ __all__ = [
     "KnowledgeQuery",
     "KnowledgeRelationship",
     "KnowledgeRelationshipType",
+    "KnowledgeSnapshot",
     "QueryResult",
 ]
