@@ -1,5 +1,10 @@
 """Repository intelligence foundation for Builder Enterprise X."""
 
+from builder.repository.change_analyzer import (
+    ChangeImpact,
+    ChangeSet,
+    RepositoryChangeAnalyzer,
+)
 from builder.repository.graph import (
     RepositoryGraph,
     RepositoryGraphBuilder,
@@ -39,6 +44,8 @@ from builder.repository.scanner import (
 )
 
 __all__ = [
+    "ChangeImpact",
+    "ChangeSet",
     "ModuleMetrics",
     "PackageMetrics",
     "PythonModule",
@@ -48,6 +55,7 @@ __all__ = [
     "QAResult",
     "QueryResource",
     "QueryResult",
+    "RepositoryChangeAnalyzer",
     "RepositoryDocumentation",
     "RepositoryGraph",
     "RepositoryGraphBuilder",
