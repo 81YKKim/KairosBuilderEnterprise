@@ -19,6 +19,7 @@ from builder.repository.index import (
     build_index,
     create_cache,
 )
+from builder.repository.integration import RepositoryPlatform
 from builder.repository.intelligence import (
     ModuleMetrics,
     PackageMetrics,
@@ -78,6 +79,7 @@ __all__ = [
     "RepositoryInventoryBuilder",
     "RepositoryMetrics",
     "RepositoryModel",
+    "RepositoryPlatform",
     "RepositoryQA",
     "RepositoryQuery",
     "RepositoryScanResult",
