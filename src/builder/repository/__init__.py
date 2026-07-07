@@ -13,6 +13,12 @@ from builder.repository.impact_analyzer import (
     ImpactScope,
     RepositoryImpactAnalyzer,
 )
+from builder.repository.index import (
+    RepositoryCache,
+    RepositoryIndex,
+    build_index,
+    create_cache,
+)
 from builder.repository.intelligence import (
     ModuleMetrics,
     PackageMetrics,
@@ -60,11 +66,13 @@ __all__ = [
     "QAResult",
     "QueryResource",
     "QueryResult",
+    "RepositoryCache",
     "RepositoryChangeAnalyzer",
     "RepositoryDocumentation",
     "RepositoryGraph",
     "RepositoryGraphBuilder",
     "RepositoryImpactAnalyzer",
+    "RepositoryIndex",
     "RepositoryIntelligence",
     "RepositoryInventory",
     "RepositoryInventoryBuilder",
@@ -76,4 +84,6 @@ __all__ = [
     "RepositoryScanner",
     "RepositoryStatistics",
     "RepositoryTestFile",
+    "build_index",
+    "create_cache",
 ]
