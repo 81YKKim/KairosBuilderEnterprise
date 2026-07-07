@@ -1,5 +1,9 @@
 """Repository intelligence foundation for Builder Enterprise X."""
 
+from builder.repository.inventory import (
+    RepositoryInventory,
+    RepositoryInventoryBuilder,
+)
 from builder.repository.model import (
     PythonModule,
     PythonPackage,
@@ -17,6 +21,8 @@ __all__ = [
     "PythonModule",
     "PythonPackage",
     "RepositoryDocumentation",
+    "RepositoryInventory",
+    "RepositoryInventoryBuilder",
     "RepositoryModel",
     "RepositoryScanResult",
     "RepositoryScanner",
