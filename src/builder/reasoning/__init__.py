@@ -1,5 +1,11 @@
-"""Reasoning layer models, inference, and rules for Builder Enterprise X."""
+"""Reasoning layer models, inference, rules, and constraints."""
 
+from builder.reasoning.constraint import (
+    ConstraintEngine,
+    ConstraintEvaluation,
+    ConstraintViolation,
+    ReasoningConstraint,
+)
 from builder.reasoning.inference import InferenceEngine
 from builder.reasoning.model import (
     Inference,
@@ -17,6 +23,9 @@ from builder.reasoning.rule import (
 )
 
 __all__ = [
+    "ConstraintEngine",
+    "ConstraintEvaluation",
+    "ConstraintViolation",
     "InferenceEngine",
     "Inference",
     "ReasoningCollection",
@@ -24,6 +33,7 @@ __all__ = [
     "ReasoningResult",
     "ReasoningSeverity",
     "ReasoningType",
+    "ReasoningConstraint",
     "ReasoningRule",
     "RuleEngine",
     "RuleEvaluation",
