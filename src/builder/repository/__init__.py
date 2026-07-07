@@ -1,5 +1,9 @@
 """Repository intelligence foundation for Builder Enterprise X."""
 
+from builder.repository.graph import (
+    RepositoryGraph,
+    RepositoryGraphBuilder,
+)
 from builder.repository.inventory import (
     RepositoryInventory,
     RepositoryInventoryBuilder,
@@ -21,6 +25,8 @@ __all__ = [
     "PythonModule",
     "PythonPackage",
     "RepositoryDocumentation",
+    "RepositoryGraph",
+    "RepositoryGraphBuilder",
     "RepositoryInventory",
     "RepositoryInventoryBuilder",
     "RepositoryModel",
