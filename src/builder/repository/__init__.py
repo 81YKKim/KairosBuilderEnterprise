@@ -22,6 +22,11 @@ from builder.repository.model import (
     RepositoryStatistics,
     RepositoryTestFile,
 )
+from builder.repository.query import (
+    QueryResource,
+    QueryResult,
+    RepositoryQuery,
+)
 from builder.repository.scanner import (
     RepositoryScanResult,
     RepositoryScanner,
@@ -32,6 +37,8 @@ __all__ = [
     "PackageMetrics",
     "PythonModule",
     "PythonPackage",
+    "QueryResource",
+    "QueryResult",
     "RepositoryDocumentation",
     "RepositoryGraph",
     "RepositoryGraphBuilder",
@@ -40,6 +47,7 @@ __all__ = [
     "RepositoryInventoryBuilder",
     "RepositoryMetrics",
     "RepositoryModel",
+    "RepositoryQuery",
     "RepositoryScanResult",
     "RepositoryScanner",
     "RepositoryStatistics",
