@@ -1,5 +1,6 @@
-"""Evidence layer models for Builder Enterprise X."""
+"""Evidence layer models and extractors for Builder Enterprise X."""
 
+from builder.evidence.extractor import EvidenceExtractor
 from builder.evidence.model import (
     Evidence,
     EvidenceCollection,
@@ -11,6 +12,7 @@ from builder.evidence.model import (
 __all__ = [
     "Evidence",
     "EvidenceCollection",
+    "EvidenceExtractor",
     "EvidenceSeverity",
     "EvidenceSource",
     "EvidenceType",
