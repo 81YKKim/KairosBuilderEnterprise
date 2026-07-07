@@ -1,5 +1,6 @@
-"""Knowledge layer models for Builder Enterprise X."""
+"""Knowledge layer models and extractors for Builder Enterprise X."""
 
+from builder.knowledge.extractor import KnowledgeExtractor
 from builder.knowledge.model import (
     KnowledgeCollection,
     KnowledgeEntity,
@@ -12,6 +13,7 @@ __all__ = [
     "KnowledgeCollection",
     "KnowledgeEntity",
     "KnowledgeEntityType",
+    "KnowledgeExtractor",
     "KnowledgeRelationship",
     "KnowledgeRelationshipType",
 ]
