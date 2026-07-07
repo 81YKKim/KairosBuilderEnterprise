@@ -1,4 +1,4 @@
-"""Reasoning layer models and inference for Builder Enterprise X."""
+"""Reasoning layer models, inference, and rules for Builder Enterprise X."""
 
 from builder.reasoning.inference import InferenceEngine
 from builder.reasoning.model import (
@@ -9,6 +9,12 @@ from builder.reasoning.model import (
     ReasoningSeverity,
     ReasoningType,
 )
+from builder.reasoning.rule import (
+    ReasoningRule,
+    RuleEngine,
+    RuleEvaluation,
+    RuleViolation,
+)
 
 __all__ = [
     "InferenceEngine",
@@ -18,4 +24,8 @@ __all__ = [
     "ReasoningResult",
     "ReasoningSeverity",
     "ReasoningType",
+    "ReasoningRule",
+    "RuleEngine",
+    "RuleEvaluation",
+    "RuleViolation",
 ]
