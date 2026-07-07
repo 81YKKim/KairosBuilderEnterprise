@@ -1,5 +1,6 @@
-"""Reasoning layer models for Builder Enterprise X."""
+"""Reasoning layer models and inference for Builder Enterprise X."""
 
+from builder.reasoning.inference import InferenceEngine
 from builder.reasoning.model import (
     Inference,
     ReasoningCollection,
@@ -10,6 +11,7 @@ from builder.reasoning.model import (
 )
 
 __all__ = [
+    "InferenceEngine",
     "Inference",
     "ReasoningCollection",
     "ReasoningEvidence",
