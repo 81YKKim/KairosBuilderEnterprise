@@ -9,6 +9,10 @@ from builder.repository.graph import (
     RepositoryGraph,
     RepositoryGraphBuilder,
 )
+from builder.repository.impact_analyzer import (
+    ImpactScope,
+    RepositoryImpactAnalyzer,
+)
 from builder.repository.intelligence import (
     ModuleMetrics,
     PackageMetrics,
@@ -46,6 +50,7 @@ from builder.repository.scanner import (
 __all__ = [
     "ChangeImpact",
     "ChangeSet",
+    "ImpactScope",
     "ModuleMetrics",
     "PackageMetrics",
     "PythonModule",
@@ -59,6 +64,7 @@ __all__ = [
     "RepositoryDocumentation",
     "RepositoryGraph",
     "RepositoryGraphBuilder",
+    "RepositoryImpactAnalyzer",
     "RepositoryIntelligence",
     "RepositoryInventory",
     "RepositoryInventoryBuilder",
